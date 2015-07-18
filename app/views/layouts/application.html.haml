@@ -1,0 +1,37 @@
+!!! 5
+%html
+  %head
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title カッパの俳句
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+    - set_meta_tags description: 'カッパの俳句'
+    - set_meta_tags keywords: 'カッパの俳句,カッパ,俳句'
+    - set_meta_tags open_graph: { title: 'カッパの俳句' }
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    = yield :head
+  %body
+    .navbar.navbar-default
+      .navbar-header
+        %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand{:href => root_path} カッパの俳句
+      .navbar-collapse.collapse.navbar-responsive-collapse
+        %ul.nav.navbar-nav
+    .container
+      /.row
+      /  /.span5
+      /  /  = render 'commons/sidebar'
+      /  /.span7
+      = yield
+    .footer_add
+      = render "/commons/google_analytics"
+      :javascript
+        var nend_params = {"media":27178,"site":141059,"spot":376019,"type":1,"oriented":1};
+      %script{ type: "text/javascript", src: "http://js1.nend.net/js/nendAdLoader.js" }

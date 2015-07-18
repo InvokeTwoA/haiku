@@ -1,0 +1,19 @@
+= content_for :head do
+  = stylesheet_link_tag    "words", media: "all", "data-turbolinks-track" => true
+  = javascript_include_tag 'words'
+
+%h2 画像一覧
+.main
+  %table.table.table-striped.table-hover
+    - @id_lists.each do |id_list|
+      %tr
+        - id_list.each do |id|
+          %td
+            - word = Word.find id
+            = image_tag word.avatar.url(:medium)
+            %br
+            = word.text
+
+
+.input_form
+  = render 'form'

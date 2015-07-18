@@ -1,0 +1,9 @@
+.col-x-3.col-xs-2.sidebar
+  %ul.nav.nav-sidebar
+    %li{"data-toggle" => "collapse", :href => "#collapse-A"}
+      %a{:href => "#"}
+      %span.caret
+        menu AB
+  %ul#collapse-A.collapse
+    %li
+      /= render "/words/form"
