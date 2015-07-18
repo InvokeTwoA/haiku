@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.3'
+ruby '2.0.0'
 
 # database
 gem 'mysql2', group: :development
