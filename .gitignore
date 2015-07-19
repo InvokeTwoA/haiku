@@ -20,4 +20,5 @@ log/
 test/
 #vendor/
 public/system/*
+public/system/
 
