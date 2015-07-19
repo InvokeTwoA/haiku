@@ -8,3 +8,6 @@ $ ->
 
   #$('.wook li').hide()
   #$('.wook li').wookmark(options)
+
+  $('.good').click ->
+    $(this).html('カッパしました')

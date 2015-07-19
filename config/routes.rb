@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   root to: "words#index"
   resources :words, excepts: [:index]
 
+  resources :goods do
+    collection do
+      get "yes/:id" => "goods#yes"
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
