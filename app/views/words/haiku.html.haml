@@ -1,0 +1,19 @@
+%h2 俳句
+
+.main
+  %table.table.table-striped.table-hover
+    %tr
+      %td
+        - word = Word.find @res[0]
+        = image_tag word.avatar.url(:medium)
+    %tr
+      %td
+        - word = Word.find @res[1]
+        = image_tag word.avatar.url(:medium)
+    %tr
+      %td
+        - word = Word.find @res[2]
+        = image_tag word.avatar.url(:medium)
+PV : #{@pv}
+
+= link_to "他の俳句", "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-success'

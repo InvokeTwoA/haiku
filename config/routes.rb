@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: "words#index"
   resources :words, excepts: [:index]
+  get "haiku/:hash" => "words#haiku"
 
   resources :goods do
     collection do

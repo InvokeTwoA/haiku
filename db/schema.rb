@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150718212151) do
+ActiveRecord::Schema.define(version: 20150719060357) do
 
   create_table "goods", force: :cascade do |t|
     t.integer  "value",      limit: 4
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20150718212151) do
     t.integer  "word1",      limit: 4
     t.integer  "word2",      limit: 4
     t.integer  "word3",      limit: 4
+  end
+
+  create_table "haiku_sets", force: :cascade do |t|
+    t.string  "token", limit: 255
+    t.integer "word1", limit: 4
+    t.integer "word2", limit: 4
+    t.integer "word3", limit: 4
+    t.integer "pv",    limit: 4
   end
 
   create_table "users", force: :cascade do |t|
