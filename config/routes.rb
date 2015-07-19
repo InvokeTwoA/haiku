@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :words, excepts: [:index]
   get "haiku/:hash" => "words#haiku"
 
+  get "muri" => "words#muri", as: :muri
+
   resources :goods do
     collection do
       get "yes/:id" => "goods#yes"

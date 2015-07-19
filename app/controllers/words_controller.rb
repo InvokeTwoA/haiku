@@ -25,8 +25,10 @@ class WordsController < ApplicationController
   end
 
   def create
-    @word = Word.create(word_params)
+    @word = Word.create!(word_params)
     redirect_to root_path
+  rescue
+    redirect_to muri_path
   end
 
   def word_params
@@ -72,6 +74,10 @@ class WordsController < ApplicationController
       )
       @pv = 1
     end
+
+  end
+
+  def muri
 
   end
 end

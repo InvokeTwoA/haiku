@@ -2,7 +2,6 @@ class Word < ActiveRecord::Base
   has_attached_file :avatar, 
     styles: { medium: "300x300>", thumb: "100x100>" }, 
     storage: :s3, 
-    #s3_credentials: "#{Rails.root}/config/s3.yml", 
     s3_credentials: {
       access_key_id: Settings.access_key_id,
       secret_access_key: Settings.secret_access_key,
@@ -14,8 +13,8 @@ class Word < ActiveRecord::Base
     path: '/:class/:attachment/:id_partition/:style/:filename',
     default_url: "/images/:style/missing.png"
 
-
   validates :text , length: {minimum: 4 , maximum: 10 } , presence: true
+  validates :number, presence: true
   validates_attachment_presence :avatar
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
