@@ -52,5 +52,9 @@ module Haiku
       g.test_framework = "rspec"
       g.controller_specs = false
     end
+
+    # routing を外部ファイルに分割する
+    # config.paths["config/routes"] << "config/routes/admin.rb"
   end
+
 end

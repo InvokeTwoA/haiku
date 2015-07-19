@@ -1,0 +1,11 @@
+%h2 いいね一覧
+.main
+  %table.table.table-striped.table-hover
+    - @goods.each do |good|
+      %tr
+        %td
+          = good.id
+        %td
+          = link_to '削除', admin_good_path(good), method: 'delete', data: {confirm: '削除するブヒ？'}
+
+

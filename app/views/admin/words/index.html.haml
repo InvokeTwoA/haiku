@@ -1,0 +1,16 @@
+= content_for :head do
+  = stylesheet_link_tag    "words", media: "all", "data-turbolinks-track" => true
+
+%h2 画像一覧
+.main
+  %table.table.table-striped.table-hover
+    - @words.each do |word|
+      %tr
+        %td
+          = image_tag word.avatar.url(:medium)
+          %br
+          = word.text
+        %td
+          = link_to '削除', admin_word_path(word), method: 'delete', data: {confirm: '削除するブヒ？'}
+
+
