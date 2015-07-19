@@ -1,5 +1,18 @@
 class Word < ActiveRecord::Base
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, 
+    styles: { medium: "300x300>", thumb: "100x100>" }, 
+    storage: :s3, 
+    #s3_credentials: "#{Rails.root}/config/s3.yml", 
+    s3_credentials: {
+      access_key_id: Settings.access_key_id,
+      secret_access_key: Settings.secret_access_key,
+      s3_host_name: "s3-ap-northeast-1.amazonaws.com",
+      bucket: Settings.bucket
+    },
+    url: 's3-ap-northeast-1.amazonaws.com',
+    s3_endpoint: "s3-ap-northeast-1.amazonaws.com",
+    path: '/:class/:attachment/:id_partition/:style/:filename',
+    default_url: "/images/:style/missing.png"
 
 
   validates :text , length: {minimum: 4 , maximum: 10 } , presence: true

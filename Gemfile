@@ -43,3 +43,8 @@ gem "therubyracer"
 gem "paperclip", "~> 4.3"
 gem 'meta-tags', :require => 'meta_tags'
 gem 'jquery-wookmark-rails'
+
+gem 'aws-s3'
+#gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
+gem 'settingslogic'

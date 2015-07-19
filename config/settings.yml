@@ -1,0 +1,17 @@
+defaults: &defaults
+
+
+development:
+  <<: *defaults
+  bucket: kappa.haiku.dev
+  access_key_id: AKIAJ4J46ZCPRQCQZXJQ
+  secret_access_key: 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
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  bucket: kappa.haiku
+  access_key_id: AKIAJ4J46ZCPRQCQZXJQ
+  secret_access_key: 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
