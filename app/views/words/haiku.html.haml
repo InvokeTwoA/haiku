@@ -16,4 +16,11 @@
         = image_tag word.avatar.url(:medium)
 PV : #{@pv}
 
+= link_to 'カッパだね', "/goods/yes/#{@res.join('-')}", remote: true, class: "good btn btn-success"
+- goods = Good.where("word1 =? AND word2 = ? AND word3 = ?", @res[0], @res[1], @res[2])
+- if goods.count > 0
+  %br
+  #{goods.first.value} かっぱ
+%br
+
 = link_to "他の俳句", "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-success'
