@@ -2,6 +2,11 @@
   = stylesheet_link_tag    "words", media: "all", "data-turbolinks-track" => true
   = javascript_include_tag 'words'
 
+- if request.smart_phone?
+  スマホの人は
+  = link_to 'こちら', "/haiku/#{SecureRandom.urlsafe_base64(6)}"
+  を見るが良い
+
 %h2 ランダム俳句たくさん表示
 .main
   %table.table.table-striped.table-hover
