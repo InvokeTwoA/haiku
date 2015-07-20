@@ -66,7 +66,7 @@ class WordsController < ApplicationController
       @res.push tmp_word5.last
 
       url = HaikuSet.create(
-        token: SecureRandom.urlsafe_base64(6),
+        token: hash,
         word1: tmp_word5.first,
         word2: tmp_word7.first,
         word3: tmp_word5.last,
