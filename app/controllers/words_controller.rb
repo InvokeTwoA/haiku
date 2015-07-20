@@ -74,7 +74,6 @@ class WordsController < ApplicationController
       )
       @pv = 1
     end
-
   end
 
   def muri

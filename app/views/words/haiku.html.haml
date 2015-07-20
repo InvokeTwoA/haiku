@@ -1,19 +1,23 @@
-%h2 俳句
+- word1 = Word.find @res[0]
+- word2 = Word.find @res[1]
+- word3 = Word.find @res[2]
+= content_for :head do
+  = display_meta_tags keywords:[word1.text, word2.text, word3.text]
+
+%h2 ランダム俳句
+= link_to "他の俳句", "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
 
 .main
   %table.table.table-striped.table-hover
     %tr
-      %td
-        - word = Word.find @res[0]
-        = image_tag word.avatar.url(:medium)
+      %td.center
+        = image_tag word1.avatar.url(:medium)
     %tr
-      %td
-        - word = Word.find @res[1]
-        = image_tag word.avatar.url(:medium)
+      %td.center
+        = image_tag word2.avatar.url(:medium)
     %tr
-      %td
-        - word = Word.find @res[2]
-        = image_tag word.avatar.url(:medium)
+      %td.center
+        = image_tag word3.avatar.url(:medium)
 PV : #{@pv}
 
 = link_to 'カッパだね', "/goods/yes/#{@res.join('-')}", remote: true, class: "good btn btn-success"
@@ -23,4 +27,3 @@ PV : #{@pv}
   #{goods.first.value} かっぱ
 %br
 
-= link_to "他の俳句", "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-success'

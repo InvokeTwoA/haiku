@@ -1,16 +1,11 @@
 !!! 5
 %html
   %head
-    %meta(charset="utf-8")
-    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
-    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    = render partial: 'layouts/meta_tags'
     %title カッパの俳句
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
-    - set_meta_tags description: 'カッパの俳句'
-    - set_meta_tags keywords: 'カッパの俳句,カッパ,俳句'
-    - set_meta_tags open_graph: { title: 'カッパの俳句' }
     /[if lt IE 9]
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = yield :head

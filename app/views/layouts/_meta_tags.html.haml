@@ -1,0 +1,32 @@
+%meta(charset="utf-8")
+%meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+%meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+-# デスクリプションを不用意に変更されないようにする
+%META{CONTENT: 'NOYDIR', NAME: 'ROBOTS'}
+%META{CONTENT: 'NOODP', NAME: 'ROBOTS'}
+
+%meta{content: 'summary', name: 'twitter:card'}
+%meta{content: '@kappa_ikemen', name: 'twitter:site'}/
+
+/%link{media: 'handheld', rel: 'alternate', href: canonical_url}/
+- set_meta_tags title: 'カッパの俳句', site: 'カッパの俳句', reverse: true
+- set_meta_tags description: '画像による俳句。吹き出し画像で俳句が生成されます。'
+- set_meta_tags keywords: ['カッパの俳句', 'カッパ', '俳句', '画像俳句', '吹き出し画像']
+/= display_meta_tags keywords: ['追加1', '追加2']
+= display_meta_tags open_graph: { title: 'カッパの俳句' }
+/- set_meta_tags canonical: canonical_url
+
+:ruby
+  opg = {
+    title: 'カッパの俳句',
+    type: 'website',
+    url: '',
+    image: '',
+    site_name: 'カッパの俳句',
+    description: '吹き出し画像による俳句',
+    locale: 'ja_JP'
+  }
+- set_meta_tags :open_graph => opg
+/%meta{content: '#{Settings.facebook.app_id}', property: 'fb:app_id'}/
+
