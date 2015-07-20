@@ -50,4 +50,4 @@ gem 'aws-sdk', '< 2.0'
 gem 'settingslogic'
 gem 'sitemap_generator'
 
-#gem 'jpmobile'
+gem 'jpmobile'
