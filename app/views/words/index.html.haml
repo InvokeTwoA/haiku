@@ -5,13 +5,20 @@
 - if request.smart_phone?
   スマホの人は
   = link_to 'こちら', "/haiku/#{SecureRandom.urlsafe_base64(6)}"
-  を見るが良い
+  を見るべし
 
 %h2 ランダム俳句たくさん表示
+右から左に読んでいくと俳句になります。
+%br
+良いと思った俳句には「カッパだね」をすると良いです。
+%br
+= link_to '人気順', goods_path
+
 .main
   %table.table.table-striped.table-hover
     - @id_lists.each do |id_list|
       %tr
+        - id_list.reverse
         - id_list.each do |id|
           %td
             - word = Word.find id
