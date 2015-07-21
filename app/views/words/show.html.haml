@@ -1,0 +1,6 @@
+= content_for :head do
+  = stylesheet_link_tag    "words", media: "all", "data-turbolinks-track" => true
+  = javascript_include_tag 'words'
+
+%h2 俳句
+= render partial: "/words/detail", locals: { word1: @word1, word2: @word2, word3: @word3, pv: @pv}

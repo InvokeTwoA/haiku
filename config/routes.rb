@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "words#index"
-  resources :words, excepts: [:index]
+  resources :words, excepts: [:index, :show]
   get "haiku/:hash" => "words#haiku"
 
   get "muri" => "words#muri", as: :muri

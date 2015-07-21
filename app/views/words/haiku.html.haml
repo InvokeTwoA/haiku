@@ -4,28 +4,8 @@
 = content_for :head do
   = stylesheet_link_tag    "words", media: "all", "data-turbolinks-track" => true
   = javascript_include_tag 'words'
-  = display_meta_tags keywords:[word1.text, word2.text, word3.text]
 
 %h2 ランダム俳句
 = link_to "他の俳句", "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
 
-.main
-  %table.table.table-striped.table-hover
-    %tr
-      %td.center
-        = image_tag word1.avatar.url(:medium)
-    %tr
-      %td.center
-        = image_tag word2.avatar.url(:medium)
-    %tr
-      %td.center
-        = image_tag word3.avatar.url(:medium)
-PV : #{@pv}
-%br
-
-= link_to 'カッパだね', "/goods/yes/#{@res.join('-')}?hash=#{SecureRandom.urlsafe_base64(6)}", remote: true, class: "good btn btn-success"
-- goods = Good.where("word1 =? AND word2 = ? AND word3 = ?", @res[0], @res[1], @res[2])
-- if goods.count > 0
-  %br
-  #{goods.first.value} かっぱ
-%br
+= render partial: "/words/detail", locals: { word1: word1, word2: word2, word3: word3, pv: @pv}

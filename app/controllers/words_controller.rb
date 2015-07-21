@@ -31,6 +31,30 @@ class WordsController < ApplicationController
     redirect_to muri_path
   end
 
+  def show
+    id_list = params[:id]
+    res = id_list.split('-')
+    @word1 = Word.find res[0]
+    @word2 = Word.find res[1]
+    @word3 = Word.find res[2]
+
+    haiku_sets = HaikuSet.where(word1: @word1.id, word2: @word2.id, word3: @word3.id)
+    if haiku_sets.present?
+      haiku_set = haiku_sets.first
+      haiku_set.pv_up
+      @pv = haiku_set.pv
+    else
+      haiku_set = HaikuSet.new(
+        word1: @word1.id,
+        word2: @word2.id,
+        word3: @word3.id,
+        pv: 1
+      )
+      haiku_set.save!
+      @pv = 1
+    end
+  end
+
   def word_params
     params.require(:word).permit(:text, :avatar, :number)
   end
@@ -39,17 +63,16 @@ class WordsController < ApplicationController
     @res = []
 
     hash = params[:hash]
-    urls = HaikuSet.where(token: hash)
-    if urls.present?
-      url = urls.first
-      url.pv = url.pv + 1
-      url.save!
+    haiku_sets = HaikuSet.where(token: hash)
+    if haiku_sets.present?
+      haiku_set = haiku_sets.first
+      haiku_set.pv_up
 
-      @res.push url.word1
-      @res.push url.word2
-      @res.push url.word3
+      @res.push haiku_set.word1
+      @res.push haiku_set.word2
+      @res.push haiku_set.word3
 
-      @pv = url.pv
+      @pv = haiku_set.pv
     else
       word5_list = Word.text5.pluck(:id)
       word7_list = Word.text7.pluck(:id)
@@ -65,7 +88,7 @@ class WordsController < ApplicationController
       @res.push tmp_word7.first
       @res.push tmp_word5.last
 
-      url = HaikuSet.create(
+      HaikuSet.create(
         token: hash,
         word1: tmp_word5.first,
         word2: tmp_word7.first,

@@ -5,7 +5,15 @@ class HaikuSet < ActiveRecord::Base
 
   def generate_hash
     tmp_token = SecureRandom.urlsafe_base64(6)
-    self.class.where(token: tmp_token).blank? ? tmp_token : generate_hash
+    if self.class.where(token: tmp_token).blank?
+      self.token = tmp_token
+    else
+      generate_hash
+    end
   end
 
+  def pv_up
+    self.pv = self.pv+1
+    self.save!
+  end
 end
