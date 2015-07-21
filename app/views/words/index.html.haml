@@ -18,8 +18,7 @@
   %table.table.table-striped.table-hover
     - @id_lists.each do |id_list|
       %tr
-        - id_list.reverse!
-        - id_list.each do |id|
+        - id_list.reverse.each do |id|
           %td
             - word = Word.find_by_id id
             - next if word.blank?
