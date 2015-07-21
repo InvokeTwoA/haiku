@@ -1,3 +1,7 @@
+- word1 = Word.find haiku_set.word1
+- word2 = Word.find haiku_set.word2
+- word3 = Word.find haiku_set.word3
+
 = content_for :head do
   = display_meta_tags keywords:[word1.text, word2.text, word3.text]
 
@@ -19,7 +23,7 @@
     %tr
       %td.center
         = image_tag word3.avatar.url(:medium)
-PV : #{pv}
+PV : #{haiku_set.pv}
 %br
 
 = link_to 'カッパだね', "/goods/yes/#{word1.id}-#{word2.id}-#{word3.id}?hash=#{SecureRandom.urlsafe_base64(6)}", remote: true, class: "good btn btn-success"
@@ -28,3 +32,33 @@ PV : #{pv}
   %br
   #{goods.first.value} かっぱ
 %br
+
+%h1 この俳句のコメント
+= haiku_set.id
+- if haiku_set.comments.present?
+  %table.table.table-striped.table-hover
+    %tr
+      %th 名前
+      %th コメント
+    - haiku_set.comments.each do |comment|
+      %tr
+        %td= comment.name
+        %td= comment.body
+- else
+  コメントなど存在しない
+
+%h1 コメントの入力
+
+= form_for Comment.new, html: { multipart: true, class: 'form form-horizontal'} do |f|
+  .form-group
+    %label.col-sm-2.control-label 名前
+    .col-sm-5
+      = f.text_field :name, class: 'form-control', value: '名無しのカッパ'
+  .form-group
+    %label.col-sm-2.control-label 名前
+    .col-sm-5
+      = f.text_field :body, class: 'form-control'
+      = f.hidden_field :haiku_set_id, value: haiku_set.id
+    = f.submit '送信', class: 'btn btn-success'
+
+

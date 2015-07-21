@@ -8,4 +8,4 @@
 %h2 ランダム俳句
 = link_to "他の俳句", "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
 
-= render partial: "/words/detail", locals: { word1: word1, word2: word2, word3: word3, pv: @pv}
+= render partial: "/words/detail", locals: { haiku_set: @haiku_set}

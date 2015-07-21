@@ -20,7 +20,8 @@
       .navbar-collapse.collapse.navbar-responsive-collapse
         %ul.nav.navbar-nav
           %li= link_to '適当な一覧', root_path
-          %li= link_to '人気順', goods_path
+          %li= link_to 'カッパ順', goods_path
+          %li= link_to 'コメント順', popular_words_path
           %li= link_to 'ランダム', "/haiku/#{SecureRandom.urlsafe_base64(6)}"
     .container
       /.row

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root to: "words#index"
-  resources :words, excepts: [:index, :show]
+  resources :words, excepts: [:index, :show] do
+    collection do
+      get :popular
+    end
+
+  end
   get "haiku/:hash" => "words#haiku"
 
   get "muri" => "words#muri", as: :muri
@@ -10,6 +15,7 @@ Rails.application.routes.draw do
       get "yes/:id" => "goods#yes"
     end
   end
+  resources :comments
 
   namespace 'admin' do
     resources :words

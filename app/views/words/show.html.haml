@@ -3,4 +3,4 @@
   = javascript_include_tag 'words'
 
 %h2 俳句
-= render partial: "/words/detail", locals: { word1: @word1, word2: @word2, word3: @word3, pv: @pv}
+= render partial: "/words/detail", locals: { haiku_set: @haiku_set}

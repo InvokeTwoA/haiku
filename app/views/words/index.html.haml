@@ -21,7 +21,8 @@
         - id_list.reverse!
         - id_list.each do |id|
           %td
-            - word = Word.find id
+            - word = Word.find_by_id id
+            - next if word.blank?
             = image_tag word.avatar.url(:medium)
             %br
             = word.text
