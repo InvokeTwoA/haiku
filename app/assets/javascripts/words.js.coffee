@@ -1,13 +1,4 @@
 $ ->
-  options = 
-    autoResize: true
-    container: $('.container')
-    offset: 2
-    itemWidth: 210
-
-
-  #$('.wook li').hide()
-  #$('.wook li').wookmark(options)
-
-  $('.good').click ->
-    $(this).html('カッパしました')
+  $('.good').on 'click', ->
+    $(this).hide()
+    $.colorbox({html:"<h1>カッパしました</h1><br><img src='/images/weey.png'>"});

@@ -26,8 +26,9 @@ class GoodsController < ApplicationController
       good = goods.first
       good.value = good.value + 1
       good.save!
+      true
     else
-      good = Good.create(
+      good = Good.create!(
         user_id: 1,
         value: 1,
         created_at: Time.now,
@@ -35,6 +36,7 @@ class GoodsController < ApplicationController
         word2: res[1],
         word3: res[2]
       )
+      true
     end
     head :ok
   end

@@ -2,9 +2,9 @@
 - word2 = Word.find @res[1]
 - word3 = Word.find @res[2]
 = content_for :head do
-  = display_meta_tags keywords:[word1.text, word2.text, word3.text]
   = stylesheet_link_tag    "words", media: "all", "data-turbolinks-track" => true
   = javascript_include_tag 'words'
+  = display_meta_tags keywords:[word1.text, word2.text, word3.text]
 
 %h2 ランダム俳句
 = link_to "他の俳句", "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
@@ -23,10 +23,9 @@
 PV : #{@pv}
 %br
 
-= link_to 'カッパだね', "/goods/yes/#{@res.join('-')}", remote: true, class: "good btn btn-success"
+= link_to 'カッパだね', "/goods/yes/#{@res.join('-')}?hash=#{SecureRandom.urlsafe_base64(6)}", remote: true, class: "good btn btn-success"
 - goods = Good.where("word1 =? AND word2 = ? AND word3 = ?", @res[0], @res[1], @res[2])
 - if goods.count > 0
   %br
   #{goods.first.value} かっぱ
 %br
-
