@@ -102,7 +102,7 @@ class WordsController < ApplicationController
       @res.push tmp_word5.last
 
       @haiku_set = HaikuSet.new(
-        token: hash,
+        token: token,
         word1: tmp_word5.first,
         word2: tmp_word7.first,
         word3: tmp_word5.last,
