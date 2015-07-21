@@ -72,16 +72,19 @@ class WordsController < ApplicationController
   def haiku
     @res = []
 
-    hash = params[:hash]
-    haiku_sets = HaikuSet.where(token: hash)
+    token = params[:hash]
+    haiku_sets = HaikuSet.where(token: token)
     if haiku_sets.present?
+      Rails.logger.info "token #{token} is exits."
       @haiku_set = haiku_sets.first
       @haiku_set.pv_up
 
-      @res.push haiku_set.word1
-      @res.push haiku_set.word2
-      @res.push haiku_set.word3
+      @res.push @haiku_set.word1
+      @res.push @haiku_set.word2
+      @res.push @haiku_set.word3
     else
+      Rails.logger.info "token #{token} is not exits."
+
       word5_list = Word.text5.pluck(:id)
       word7_list = Word.text7.pluck(:id)
       tmp_word5 = word5_list.sample(2)
@@ -89,6 +92,8 @@ class WordsController < ApplicationController
 
       haiku_sets = HaikuSet.where(word1: tmp_word5.first, word2: tmp_word7.first, word3: tmp_word5.last)
       if haiku_sets.present?
+        Rails.logger.info "hit count = #{haiku_sets.count}. id=#{haiku_sets.first.id}"
+        Rails.logger.info "#{tmp_word5.first}-#{tmp_word7.first}-#{tmp_word5.last} is already exist. redirect to #{haiku_sets.first.token}!!"
         return redirect_to "/haiku/#{haiku_sets.first.token}"
       end
 

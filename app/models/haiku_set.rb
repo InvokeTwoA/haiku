@@ -1,7 +1,7 @@
 class HaikuSet < ActiveRecord::Base
   validates_uniqueness_of :token
   validates_presence_of :token
-  after_initialize :generate_hash
+  before_create :generate_hash
   has_many :comments
 
   scope :popular, -> { where("comments_num > 0").order("comments_num DESC")} 
