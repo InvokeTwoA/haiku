@@ -7,7 +7,9 @@ class HaikuSet < ActiveRecord::Base
   scope :popular, -> { where("comments_num > 0").order("comments_num DESC")} 
 
   def generate_hash
+    Rails.logger.info "before create, generate hash"
     return if self.token.present?
+    Rails.logger.info "let's create"
     tmp_token = SecureRandom.urlsafe_base64(6)
     if self.class.where(token: tmp_token).blank?
       self.token = tmp_token

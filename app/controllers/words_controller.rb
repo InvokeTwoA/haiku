@@ -55,12 +55,14 @@ class WordsController < ApplicationController
       @haiku_set = haiku_sets.first
       @haiku_set.pv_up
     else
+      Rails.logger.info "haiku_set create"
       @haiku_set = HaikuSet.new(
         word1: @word1.id,
         word2: @word2.id,
         word3: @word3.id,
         pv: 1
       )
+      @haiku_set.generate_hash
       @haiku_set.save!
     end
   end
