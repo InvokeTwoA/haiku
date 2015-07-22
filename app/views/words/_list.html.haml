@@ -1,0 +1,19 @@
+.main
+  %table.table.table-striped.table-hover
+    - id_lists.each do |id_list|
+      %tr
+        %td
+        - id_list.reverse.each do |id|
+          %td
+            - word = Word.find_by_id id
+            - next if word.blank?
+            = image_tag word.avatar.url(:medium)
+            %br
+            = word.text
+        %td
+          = link_to 'カッパだね', "/goods/yes/#{id_list.join('-')}", remote: true, class: "good btn btn-success"
+          - goods = Good.where("word1 =? AND word2 = ? AND word3 = ?", id_list[0], id_list[1], id_list[2])
+          - if goods.count > 0
+            %br
+            #{goods.first.value} かっぱ
+          = link_to '詳細ページ', word_path(id_list.join('-'))

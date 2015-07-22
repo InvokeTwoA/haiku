@@ -22,4 +22,27 @@ class HaikuSet < ActiveRecord::Base
     self.pv = self.pv+1
     self.save!
   end
+
+  def word1_text
+    word = Word.find self.word1
+    word.text
+  end
+
+  def word2_text
+    word = Word.find self.word2
+    word.text
+  end
+  def word3_text
+    word = Word.find self.word3
+    word.text
+  end
+
+  def word_text
+    "#{word1_text}　#{word2_text}　#{word3_text}"
+  end
+
+  def word_ids
+    "#{word1}-#{word2}-#{word3}"
+
+  end
 end

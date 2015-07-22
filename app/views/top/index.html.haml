@@ -1,0 +1,49 @@
+
+= link_to 'ランダム俳句を見る', "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
+
+%h1 最近カッパされた俳句
+- word1 = Word.find @good.word1
+- word2 = Word.find @good.word2
+- word3 = Word.find @good.word3
+= render partial: "/words/haiku", locals: {word1: word1, word2: word2, word3: word3}
+.main
+  %table.table.table-striped.table-hover
+    %tr
+      %td.center
+        = image_tag word1.avatar.url(:medium)
+    %tr
+      %td.center
+        = image_tag word2.avatar.url(:medium)
+    %tr
+      %td.center
+        = image_tag word3.avatar.url(:medium)
+%br
+
+= link_to 'カッパだね', "/goods/yes/#{word1.id}-#{word2.id}-#{word3.id}?hash=#{SecureRandom.urlsafe_base64(6)}", remote: true, class: "good btn btn-success"
+- goods = Good.where("word1 =? AND word2 = ? AND word3 = ?", word1.id, word2.id, word3.id)
+- if goods.count > 0
+  %br
+  #{goods.first.value} かっぱ
+%br
+= link_to '詳細をみる', word_path("#{word1.id}-#{word2.id}-#{word3.id}")
+
+
+
+
+%h1 最近のコメント
+
+- if @comments.present?
+  %table.table.table-striped.table-hover
+    %tr
+      %th 俳句
+      %th 名前
+      %th コメント
+    - @comments.each do |comment|
+      %tr
+        %td
+          = link_to comment.haiku_set.word_text, word_path(comment.haiku_set.word_ids)
+        %td= comment.name
+        %td= comment.body
+- else
+  コメントなど存在しない
+

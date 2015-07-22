@@ -10,7 +10,6 @@ class GoodsController < ApplicationController
       @id_lists.push res
     end
     @word = Word.new
-    render "words/index"
   end
 
   # いいね

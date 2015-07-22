@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  root to: "words#index"
-  resources :words, excepts: [:index, :show] do
+  root to: "top#index"
+  resources :words do
     collection do
       get :popular
+      get :rnd
     end
 
   end

@@ -5,12 +5,7 @@
 = content_for :head do
   = display_meta_tags keywords:[word1.text, word2.text, word3.text]
 
-.important
-  = word1.text
-.important
-  　　#{ word2.text }
-.important
-  　　　　#{ word3.text }
+= render partial: "/words/haiku", locals: {word1: word1, word2: word2, word3: word3}
 
 .main
   %table.table.table-striped.table-hover
@@ -23,18 +18,29 @@
     %tr
       %td.center
         = image_tag word3.avatar.url(:medium)
-PV : #{haiku_set.pv}
-%br
 
-= link_to 'カッパだね', "/goods/yes/#{word1.id}-#{word2.id}-#{word3.id}?hash=#{SecureRandom.urlsafe_base64(6)}", remote: true, class: "good btn btn-success"
-- goods = Good.where("word1 =? AND word2 = ? AND word3 = ?", word1.id, word2.id, word3.id)
-- if goods.count > 0
-  %br
-  #{goods.first.value} かっぱ
-%br
+  - goods = Good.where("word1 =? AND word2 = ? AND word3 = ?", word1.id, word2.id, word3.id)
+  - kappa = goods.present? ? goods.first.value : 0
+
+.kappa_data
+  %table.table.table-striped.table-hover
+    %tr
+      %td
+        PV
+        %span.badge #{haiku_set.pv}
+      %td
+        かっぱ
+        %span.badge #{kappa}
+      %td
+        コメント
+        %span.badge #{haiku_set.comments.count}
+
+.kappa_dane
+  = link_to 'カッパだね', "/goods/yes/#{word1.id}-#{word2.id}-#{word3.id}?hash=#{SecureRandom.urlsafe_base64(6)}", remote: true, class: "good btn btn-success"
+
 
 %h1 この俳句のコメント
-= haiku_set.id
+
 - if haiku_set.comments.present?
   %table.table.table-striped.table-hover
     %tr
@@ -46,6 +52,8 @@ PV : #{haiku_set.pv}
         %td= comment.body
 - else
   コメントなど存在しない
+
+= link_to ' 他の俳句を見る', "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
 
 %h1 コメントの入力
 
