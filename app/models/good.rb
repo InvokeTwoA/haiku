@@ -1,4 +1,4 @@
 class Good < ActiveRecord::Base
-  scope :recent, -> { order("id DESC") } 
+  scope :recent, -> { order("updated_at DESC") } 
 
 end
