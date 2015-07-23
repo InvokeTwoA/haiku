@@ -19,9 +19,6 @@
       %td.center
         = image_tag word3.avatar.url(:medium)
 
-  - goods = Good.where("word1 =? AND word2 = ? AND word3 = ?", word1.id, word2.id, word3.id)
-  - kappa = goods.present? ? goods.first.value : 0
-
 .kappa_data
   %table.table.table-striped.table-hover
     %tr
@@ -29,14 +26,11 @@
         PV
         %span.badge #{haiku_set.pv}
       %td
-        かっぱ
-        %span.badge #{kappa}
-      %td
         コメント
         %span.badge #{haiku_set.comments.count}
 
 .kappa_dane
-  = link_to 'カッパだね', "/goods/yes/#{word1.id}-#{word2.id}-#{word3.id}?hash=#{SecureRandom.urlsafe_base64(6)}", remote: true, class: "good btn btn-success"
+= render partial: "/words/good", locals: {id_list: [word1.id, word2.id, word3.id]}
 
 
 %h1 この俳句のコメント
@@ -67,6 +61,6 @@
     .col-sm-5
       = f.text_field :body, class: 'form-control'
       = f.hidden_field :haiku_set_id, value: haiku_set.id
-    = f.submit '送信', class: 'btn btn-success'
+    = f.submit '送信', class: 'btn btn-primary'
 
 

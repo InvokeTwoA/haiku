@@ -1,5 +1,5 @@
-%h2 画像追加
-= form_for @word, html: { multipart: true, class: 'form form-horizontal'} do |f|
+%h2 画像編集
+= form_for @word, url: admin_word_path, method: :put, html: { multipart: true, class: 'form form-horizontal'} do |f|
   .form-group
     %label.col-sm-2.control-label 文章
     .col-sm-5

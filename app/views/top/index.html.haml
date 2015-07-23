@@ -20,17 +20,9 @@
       %td.center
         = image_tag word3.avatar.url(:medium)
 %br
-
-= link_to 'カッパだね', "/goods/yes/#{word1.id}-#{word2.id}-#{word3.id}?hash=#{SecureRandom.urlsafe_base64(6)}", remote: true, class: "good btn btn-success"
-- goods = Good.where("word1 =? AND word2 = ? AND word3 = ?", word1.id, word2.id, word3.id)
-- if goods.count > 0
-  %br
-  #{goods.first.value} かっぱ
+= render partial: "/words/good", locals: {id_list: [word1.id, word2.id, word3.id]}
 %br
 = link_to '詳細をみる', word_path("#{word1.id}-#{word2.id}-#{word3.id}")
-
-
-
 
 %h1 最近のコメント
 

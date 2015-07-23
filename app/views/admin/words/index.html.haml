@@ -13,6 +13,7 @@
           %br
           = word.text
         %td
-          = link_to '削除', admin_word_path(word), method: 'delete', data: {confirm: '削除するブヒ？'}
+          = link_to '編集', edit_admin_word_path(word), class: 'btn btn-info'
+          = link_to '削除', admin_word_path(word), method: 'delete', data: {confirm: '削除するブヒ？'}, class: "btn btn-danger"
 
 

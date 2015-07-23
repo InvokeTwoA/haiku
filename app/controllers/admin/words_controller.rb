@@ -4,7 +4,16 @@ class Admin::WordsController < ApplicationController
 
   def index
     @words = Word.all
+  end
 
+  def edit
+    @word = Word.find params[:id]
+  end
+
+  def update
+    @word = Word.find params[:id]
+    @word.update_attributes(word_params)
+    redirect_to :back, notice: '画像を編集しました。'
   end
 
   def destroy
@@ -19,6 +28,10 @@ class Admin::WordsController < ApplicationController
     authenticate_or_request_with_http_basic('Administration') do |username, password|
       username == 'ike' && password == 'men'
     end
+  end
+
+  def word_params
+    params.require(:word).permit(:text, :avatar, :number)
   end
 
 end
