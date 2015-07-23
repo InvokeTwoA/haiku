@@ -29,10 +29,10 @@
       /  /.span5
       /  /  = render 'commons/sidebar'
       /  /.span7
-    - if notice
-      .alert.alert-info
-        = notice
-    = yield
+      - if notice
+        .alert.alert-info
+          = notice
+      = yield
     .footer_add
       = render "/commons/google_analytics"
       :javascript
