@@ -58,9 +58,14 @@ class WordsController < ApplicationController
     @word = Word.new
   end
 
+  def new
+    @word = Word.new
+
+  end
+
   def create
     @word = Word.create!(word_params)
-    redirect_to root_path
+    redirect_to :back, notice: '画像を追加しました。'
   rescue
     redirect_to muri_path
   end
