@@ -22,7 +22,11 @@ Rails.application.routes.draw do
 
   namespace 'admin' do
     resources :words
-    resources :goods
+    resources :goods do
+      collection do
+        get :popular
+      end
+    end
   end
 
 end

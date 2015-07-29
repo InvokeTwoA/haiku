@@ -1,8 +1,12 @@
 class Admin::GoodsController < ApplicationController
   layout 'admin'
   def index
-    @goods = Good.all
+    @goods = Good.recent
+  end
 
+  def popular
+    @goods = Good.popular
+    render :index
   end
 
   def edit
