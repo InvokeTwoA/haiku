@@ -1,8 +1,9 @@
 .main
   - id_lists.each do |id_list|
-    - word1 = Word.find id_list.first
-    - word2 = Word.find id_list[1]
-    - word3 = Word.find id_list.last
+    - word1 = Word.find_by_id id_list.first
+    - word2 = Word.find_by_id id_list[1]
+    - word3 = Word.find_by_id id_list.last
+    - next if word1.blank? || word2.blank? || word3.blank?
     = render partial: "/words/haiku", locals: {word1: word1, word2: word2, word3: word3}
     %table.table.table-striped.table-hover
       %tr

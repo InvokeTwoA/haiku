@@ -35,35 +35,3 @@
 .kappa_dane
 = render partial: "/words/good", locals: {id_list: [word1.id, word2.id, word3.id]}
 
-
-%h1 この俳句のコメント
-
-- if haiku_set.comments.present?
-  %table.table.table-striped.table-hover
-    %tr
-      %th 名前
-      %th コメント
-    - haiku_set.comments.each do |comment|
-      %tr
-        %td= comment.name
-        %td= comment.body
-- else
-  コメントなど存在しない
-
-= link_to ' 他の俳句を見る', "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
-
-%h1 コメントの入力
-
-= form_for Comment.new, html: { multipart: true, class: 'form form-horizontal'} do |f|
-  .form-group
-    %label.col-sm-2.control-label 名前
-    .col-sm-5
-      = f.text_field :name, class: 'form-control', value: '名無しのカッパ'
-  .form-group
-    %label.col-sm-2.control-label 内容
-    .col-sm-5
-      = f.text_field :body, class: 'form-control'
-      = f.hidden_field :haiku_set_id, value: haiku_set.id
-    = f.submit '送信', class: 'btn btn-primary'
-
-
