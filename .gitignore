@@ -21,4 +21,5 @@ test/
 #vendor/
 public/system/*
 public/system/
+public/sitemaps/
 
