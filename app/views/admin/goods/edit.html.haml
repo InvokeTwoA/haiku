@@ -1,0 +1,7 @@
+%h2 値編集
+= form_for @good, url: admin_good_path, method: :put, html: { multipart: true, class: 'form form-horizontal'} do |f|
+  .form-group
+    %label.col-sm-2.control-label 値
+    .col-sm-5
+      = f.text_field :value, class: 'form-control'
+    = f.submit '送信', class: 'btn btn-primary'

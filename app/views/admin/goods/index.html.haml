@@ -8,6 +8,19 @@
         %td
           = good.value
         %td
-          = link_to '削除', admin_good_path(good), method: 'delete', data: {confirm: '削除するブヒ？'}
+          - word1 = Word.find_by_id good.word1
+          - next if word1.blank?
+          = image_tag word1.avatar.url(:medium)
+        %td
+          - word2 = Word.find_by_id good.word2
+          - next if word2.blank?
+          = image_tag word2.avatar.url(:medium)
+        %td
+          - word3 = Word.find_by_id good.word3
+          - next if word3.blank?
+          = image_tag word3.avatar.url(:medium)
+        %td
+          = link_to '編集', edit_admin_good_path(good), class: 'btn btn-info'
+          = link_to '削除', admin_good_path(good), method: 'delete', data: {confirm: '削除するブヒ？'}, class: 'btn btn-danger'
 
 
