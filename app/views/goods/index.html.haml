@@ -3,12 +3,9 @@
   = javascript_include_tag 'words'
 
 %h2 かっぱ順
-右から左に読んでいくと俳句になります。
-%br
 「カッパだね」を多くされた順に表示してます。
 
 = render partial: '/words/list', locals: { id_lists: @id_lists }
-
 
 .input_form
   = render '/words/form'
