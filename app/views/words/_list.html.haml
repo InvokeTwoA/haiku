@@ -1,16 +1,31 @@
 .main
-  %table.table.table-striped.table-hover
-    - id_lists.each do |id_list|
+  - id_lists.each do |id_list|
+    - word1 = Word.find id_list.first
+    - word2 = Word.find id_list[1]
+    - word3 = Word.find id_list.last
+    = render partial: "/words/haiku", locals: {word1: word1, word2: word2, word3: word3}
+    %table.table.table-striped.table-hover
       %tr
-        %td
+        %td.center
+          = link_to word_path(word1) do
+            = image_tag word1.avatar.url(:medium)
+          %br
+          = word1.text
+      %tr
+        %td.center
+          = link_to word_path(word2) do
+            = image_tag word2.avatar.url(:medium)
+          %br
+          = word2.text
+      %tr
+        %td.center
+          = link_to word_path(word3) do
+            = image_tag word3.avatar.url(:medium)
+          %br
+          = word3.text
+      %tr
+        %td.center
+          上の俳句を
           = render partial: "/words/good", locals: {id_list: id_list}
           %br
-          = link_to '詳細ページ', word_path(id_list.join('-'))
-        %td
-        - id_list.reverse.each do |id|
-          %td
-            - word = Word.find_by_id id
-            - next if word.blank?
-            = image_tag word.avatar.url(:medium)
-            %br
-            = word.text
+          = link_to '詳細ページ', haiku_set_path(id_list.join('-'))

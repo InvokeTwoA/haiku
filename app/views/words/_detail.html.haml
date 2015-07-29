@@ -11,13 +11,16 @@
   %table.table.table-striped.table-hover
     %tr
       %td.center
-        = image_tag word1.avatar.url(:medium)
+        = link_to word_path(word1) do
+          = image_tag word1.avatar.url(:medium)
     %tr
       %td.center
-        = image_tag word2.avatar.url(:medium)
+        = link_to word_path(word2) do
+          = image_tag word2.avatar.url(:medium)
     %tr
       %td.center
-        = image_tag word3.avatar.url(:medium)
+        = link_to word_path(word3) do
+          = image_tag word3.avatar.url(:medium)
 
 .kappa_data
   %table.table.table-striped.table-hover
@@ -57,7 +60,7 @@
     .col-sm-5
       = f.text_field :name, class: 'form-control', value: '名無しのカッパ'
   .form-group
-    %label.col-sm-2.control-label 名前
+    %label.col-sm-2.control-label 内容
     .col-sm-5
       = f.text_field :body, class: 'form-control'
       = f.hidden_field :haiku_set_id, value: haiku_set.id

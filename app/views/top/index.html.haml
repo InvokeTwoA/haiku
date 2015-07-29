@@ -1,7 +1,8 @@
 = content_for :head do
   = stylesheet_link_tag    "words", media: "all", "data-turbolinks-track" => true
   = javascript_include_tag 'words'
-= link_to 'ランダム俳句を見る', "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
+= link_to '他の俳句を見る', "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
+※ 俳句が自動生成されます
 
 %h1 最近カッパされた俳句
 - word1 = Word.find @good.word1
@@ -12,17 +13,20 @@
   %table.table.table-striped.table-hover
     %tr
       %td.center
-        = image_tag word1.avatar.url(:medium)
+        = link_to word_path(word1) do
+          = image_tag word1.avatar.url(:medium)
     %tr
       %td.center
-        = image_tag word2.avatar.url(:medium)
+        = link_to word_path(word2) do
+          = image_tag word2.avatar.url(:medium)
     %tr
       %td.center
-        = image_tag word3.avatar.url(:medium)
+        = link_to word_path(word3) do
+          = image_tag word3.avatar.url(:medium)
 %br
 = render partial: "/words/good", locals: {id_list: [word1.id, word2.id, word3.id]}
 %br
-= link_to '詳細をみる', word_path("#{word1.id}-#{word2.id}-#{word3.id}")
+= link_to '詳細をみる', haiku_set_path("#{word1.id}-#{word2.id}-#{word3.id}")
 
 %h1 最近のコメント
 
@@ -35,7 +39,7 @@
     - @comments.each do |comment|
       %tr
         %td
-          = link_to comment.haiku_set.word_text, word_path(comment.haiku_set.word_ids)
+          = link_to comment.haiku_set.word_text, haiku_set_path(comment.haiku_set.word_ids)
         %td= comment.name
         %td= comment.body
 - else

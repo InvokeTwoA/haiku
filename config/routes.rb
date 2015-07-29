@@ -5,10 +5,12 @@ Rails.application.routes.draw do
       get :popular
       get :rnd
     end
-
   end
-  get "haiku/:hash" => "words#haiku"
 
+  resources :haiku_sets, only: [:show] do
+  end
+
+  get "haiku/:hash" => "words#haiku"
   get "muri" => "words#muri", as: :muri
 
   resources :goods do

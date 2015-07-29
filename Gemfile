@@ -51,3 +51,6 @@ gem 'settingslogic'
 gem 'sitemap_generator'
 
 gem 'jpmobile'
+
+# seo
+gem "sitemap_generator"

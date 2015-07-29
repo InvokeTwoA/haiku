@@ -1,6 +1,18 @@
 = content_for :head do
   = stylesheet_link_tag    "words", media: "all", "data-turbolinks-track" => true
   = javascript_include_tag 'words'
+  = display_meta_tags keywords:[@word.text]
 
-%h2 俳句
-= render partial: "/words/detail", locals: { haiku_set: @haiku_set}
+%h2 画像
+
+= image_tag @word.avatar.url(:medium)
+%br
+= @word.text
+
+%h2 この画像が使われている俳句
+
+- if @haiku_sets.present?
+  - @haiku_sets.each do |haiku_set|
+    = render partial: "/words/detail", locals: { haiku_set: haiku_set }
+- else
+  まだ登録されてまセンベイ （´・ω・`）

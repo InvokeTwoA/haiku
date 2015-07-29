@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721192052) do
+ActiveRecord::Schema.define(version: 20150729181006) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "haiku_set_id", limit: 4,     null: false
@@ -33,12 +33,14 @@ ActiveRecord::Schema.define(version: 20150721192052) do
   end
 
   create_table "haiku_sets", force: :cascade do |t|
-    t.string  "token",        limit: 255
-    t.integer "word1",        limit: 4
-    t.integer "word2",        limit: 4
-    t.integer "word3",        limit: 4
-    t.integer "pv",           limit: 4
-    t.integer "comments_num", limit: 4,   default: 0
+    t.string   "token",        limit: 255
+    t.integer  "word1",        limit: 4
+    t.integer  "word2",        limit: 4
+    t.integer  "word3",        limit: 4
+    t.integer  "pv",           limit: 4
+    t.integer  "comments_num", limit: 4,   default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "haiku_sets", ["word1", "word2", "word3"], name: "index_haiku_sets_on_word1_and_word2_and_word3", unique: true, using: :btree
