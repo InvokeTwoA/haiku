@@ -1,9 +1,8 @@
-class HaikuSet < ActiveRecord::Base
+class TankaSet < ActiveRecord::Base
   validates_uniqueness_of :token
   validates_presence_of :token
   before_create :generate_hash
   has_many :comments
-
   scope :popular, -> { where("comments_num > 0").order("comments_num DESC")} 
 
   def generate_hash
@@ -34,16 +33,25 @@ class HaikuSet < ActiveRecord::Base
     word = Word.find self.word3
     word.text
   end
+  def word4_text
+    word = Word.find self.word4
+    word.text
+  end
+  def word5_text
+    word = Word.find self.word5
+    word.text
+  end
 
   def word_text
-    "#{word1_text}　#{word2_text}　#{word3_text}"
+    "#{word1_text}　#{word2_text}　#{word3_text}　#{word4_text}　#{word5_text}"
   end
 
   def word_ids
-    "#{word1}-#{word2}-#{word3}"
+    "#{word1}-#{word2}-#{word3}-#{word4}-#{word5}"
   end
 
   def id_list
-    [word1, word2, word3]
+    [word1, word2, word3, word4, word5]
   end
+
 end

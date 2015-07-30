@@ -23,6 +23,7 @@
           %li= link_to 'コメント順', popular_words_path
           %li= link_to 'ランダム', "/haiku/#{SecureRandom.urlsafe_base64(6)}"
           %li= link_to 'ランダム沢山', rnd_words_path
+          %li= link_to '短歌', "/tanka/#{SecureRandom.urlsafe_base64(6)}"
           %li= link_to '画像を追加', new_word_path
     .container
       /.row

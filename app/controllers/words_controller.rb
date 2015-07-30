@@ -85,20 +85,14 @@ class WordsController < ApplicationController
 
   def haiku
     @res = []
-
     token = params[:hash]
     haiku_sets = HaikuSet.where(token: token)
     if haiku_sets.present?
-      Rails.logger.info "token #{token} is exits."
       @haiku_set = haiku_sets.first
       @haiku_set.pv_up
 
-      @res.push @haiku_set.word1
-      @res.push @haiku_set.word2
-      @res.push @haiku_set.word3
+      @res = @haiku_set.id_list
     else
-      Rails.logger.info "token #{token} is not exits."
-
       word5_list = Word.text5.pluck(:id)
       word7_list = Word.text7.pluck(:id)
       tmp_word5 = word5_list.sample(2)
@@ -106,8 +100,6 @@ class WordsController < ApplicationController
 
       haiku_sets = HaikuSet.where(word1: tmp_word5.first, word2: tmp_word7.first, word3: tmp_word5.last)
       if haiku_sets.present?
-        Rails.logger.info "hit count = #{haiku_sets.count}. id=#{haiku_sets.first.id}"
-        Rails.logger.info "#{tmp_word5.first}-#{tmp_word7.first}-#{tmp_word5.last} is already exist. redirect to #{haiku_sets.first.token}!!"
         return redirect_to "/haiku/#{haiku_sets.first.token}"
       end
 
@@ -123,6 +115,44 @@ class WordsController < ApplicationController
         pv: 1
       )
       @haiku_set.save!
+    end
+  end
+
+  def tanka
+    @res = []
+    token = params[:hash]
+    tanka_sets = TankaSet.where(token: token)
+    if tanka_sets.present?
+      @tanka_set = tanka_sets.first
+      @tanka_set.pv_up
+
+      @res = @tanka_set.id_list
+    else
+      word5_list = Word.text5.pluck(:id)
+      word7_list = Word.text7.pluck(:id)
+      tmp_word5 = word5_list.sample(2)
+      tmp_word7 = word7_list.sample(3)
+
+      tanka_sets = TankaSet.where(word1: tmp_word5.first, word2: tmp_word7.first, word3: tmp_word5.last, word4: tmp_word7[1], word5: tmp_word7.last)
+      if tanka_sets.present?
+        return redirect_to "/tanka/#{tanka_sets.first.token}"
+      end
+      @res.push tmp_word5.first
+      @res.push tmp_word7.first
+      @res.push tmp_word5.last
+      @res.push tmp_word7[1]
+      @res.push tmp_word7.last
+
+      @tanka_set = TankaSet.new(
+        token: token,
+        word1: tmp_word5.first,
+        word2: tmp_word7.first,
+        word3: tmp_word5.last,
+        word4: tmp_word7[1],
+        word5: tmp_word7.last,
+        pv: 1
+      )
+      @tanka_set.save!
     end
   end
 

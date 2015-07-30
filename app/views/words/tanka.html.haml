@@ -1,0 +1,50 @@
+- word1 = Word.find @res[0]
+- word2 = Word.find @res[1]
+- word3 = Word.find @res[2]
+- word4 = Word.find @res[3]
+- word5 = Word.find @res[4]
+= content_for :head do
+  = stylesheet_link_tag    "words", media: "all", "data-turbolinks-track" => true
+  = javascript_include_tag 'words'
+  = display_meta_tags keywords:[word1.text, word2.text, word3.text, word4.text, word5.text, '短歌', '短歌メーカー', '短歌画像', 'かっぱ短歌']
+
+%h2 ランダム短歌
+= link_to "他の短歌", "/tanka/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
+※ボタンを押すたびに短歌が自動生成されます。
+
+.main
+  .important
+    = word1.text
+  .important
+    　　#{ word2.text }
+  .important
+    　　　　#{ word3.text }
+  .important
+    　　　　　　#{ word4.text }
+  .important
+    　　　　　　#{ word5.text }
+  %table.table.table-striped.table-hover
+    %tr
+      %td.center
+        = link_to word_path(word1) do
+          = image_tag word1.avatar.url(:medium)
+    %tr
+      %td.center
+        = link_to word_path(word2) do
+          = image_tag word2.avatar.url(:medium)
+    %tr
+      %td.center
+        = link_to word_path(word3) do
+          = image_tag word3.avatar.url(:medium)
+    %tr
+      %td.center
+        = link_to word_path(word4) do
+          = image_tag word4.avatar.url(:medium)
+    %tr
+      %td.center
+        = link_to word_path(word5) do
+          = image_tag word5.avatar.url(:medium)
+
+
+- if request.smart_phone?
+  = link_to '画像の追加', new_word_path

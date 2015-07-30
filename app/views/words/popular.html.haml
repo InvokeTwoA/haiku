@@ -3,8 +3,6 @@
   = javascript_include_tag 'words'
 
 %h2 コメント順
-右から左に読んでいくと俳句になります。
-%br
 コメント数が多い順に表示してます
 
 = render partial: '/words/list', locals: { id_lists: @id_lists }

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   get "haiku/:hash" => "words#haiku"
+  get "tanka/:hash" => "words#tanka"
   get "muri" => "words#muri", as: :muri
 
   resources :goods do

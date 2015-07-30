@@ -14,5 +14,6 @@
 - if @haiku_sets.present?
   - @haiku_sets.each do |haiku_set|
     = render partial: "/words/detail", locals: { haiku_set: haiku_set }
+    = link_to '↑の詳細', haiku_set_path(haiku_set.id_list.join('-')), class: 'btn'
 - else
   まだ登録されてまセンベイ （´・ω・`）
