@@ -1,6 +1,6 @@
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = "https://kappa2haiku.herokuapp.com/"
-SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
+#SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
 
 SitemapGenerator::Sitemap.create do
   SitemapGenerator::Sitemap.create do
