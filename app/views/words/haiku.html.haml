@@ -5,8 +5,10 @@
   = stylesheet_link_tag    "words", media: "all", "data-turbolinks-track" => true
   = javascript_include_tag 'words'
 
-%h2 ランダム俳句
 = link_to "他の俳句", "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
+%br
+※俳句が自動生成されます
+%br
 
 = render partial: "/words/detail", locals: { haiku_set: @haiku_set }
 = render partial: "/words/comment", locals: { haiku_set: @haiku_set }
