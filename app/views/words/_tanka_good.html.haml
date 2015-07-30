@@ -1,0 +1,10 @@
+= link_to 'カッパだね', "/goods/tanka/yes/#{id_list.join('-')}", remote: true, class: "tanka-good btn btn-success", data: {id: id_list.join('-')}
+- goods = TankaGood.where("word1 =? AND word2 = ? AND word3 = ? AND word4 = ? AND word5 = ?", id_list[0], id_list[1], id_list[2], id_list[3], id_list[4])
+%br
+%span{class: "kappa-tanka-#{id_list.join('-')}"}
+  - if goods.count > 0
+    #{goods.first.value} 
+  - else
+    0
+かっぱ
+

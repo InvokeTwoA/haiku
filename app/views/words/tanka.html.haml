@@ -44,6 +44,7 @@
       %td.center
         = link_to word_path(word5) do
           = image_tag word5.avatar.url(:medium)
+= render partial: "/words/tanka_good", locals: {id_list: @tanka_set.id_list}
 
 
 - if request.smart_phone?

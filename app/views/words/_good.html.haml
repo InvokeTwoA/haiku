@@ -1,7 +1,9 @@
 = link_to 'カッパだね', "/goods/yes/#{id_list.join('-')}", remote: true, class: "good btn btn-success", data: {id: id_list.join('-')}
 - goods = Good.where("word1 =? AND word2 = ? AND word3 = ?", id_list[0], id_list[1], id_list[2])
-- if goods.count > 0
-  %br
-  %span{class: "kappa#{id_list.join('-')}"}
+%br
+%span{class: "kappa#{id_list.join('-')}"}
+  - if goods.count > 0
     #{goods.first.value} 
-  かっぱ
+  - else
+    0
+かっぱ

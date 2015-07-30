@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :goods do
     collection do
       get "yes/:id" => "goods#yes"
+      get "tanka/yes/:id" => "goods#tanka_yes"
     end
   end
   resources :comments

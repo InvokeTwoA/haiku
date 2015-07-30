@@ -39,4 +39,36 @@ class GoodsController < ApplicationController
     end
     head :ok
   end
+
+  def tanka_yes
+    id_list = params[:id]
+    res = id_list.split('-')
+    goods = TankaGood.where(
+      word1: res[0],
+      word2: res[1],
+      word3: res[2],
+      word3: res[3],
+      word3: res[4]
+    )
+    if goods.present?
+      good = goods.first
+      good.value = good.value + 1
+      good.save!
+      true
+    else
+      good = TankaGood.create!(
+        user_id: 1,
+        value: 1,
+        created_at: Time.now,
+        word1: res[0],
+        word2: res[1],
+        word3: res[2],
+        word4: res[3],
+        word5: res[4],
+      )
+      true
+    end
+    head :ok
+
+  end
 end

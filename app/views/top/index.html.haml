@@ -27,6 +27,45 @@
 = render partial: "/words/good", locals: {id_list: [word1.id, word2.id, word3.id]}
 %br
 = link_to '詳細をみる', haiku_set_path("#{word1.id}-#{word2.id}-#{word3.id}")
+%br
+= link_to '他の俳句を見る', "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
+※ 俳句が自動生成されます
+
+%h1 最近カッパされた短歌
+
+- word1 = Word.find @tanka_good.word1
+- word2 = Word.find @tanka_good.word2
+- word3 = Word.find @tanka_good.word3
+- word4 = Word.find @tanka_good.word4
+- word5 = Word.find @tanka_good.word5
+= render partial: "/words/tanka", locals: {word1: word1, word2: word2, word3: word3, word4: word4, word5: word5}
+.main
+  %table.table.table-striped.table-hover
+    %tr
+      %td.center
+        = link_to word_path(word1) do
+          = image_tag word1.avatar.url(:medium)
+    %tr
+      %td.center
+        = link_to word_path(word2) do
+          = image_tag word2.avatar.url(:medium)
+    %tr
+      %td.center
+        = link_to word_path(word3) do
+          = image_tag word3.avatar.url(:medium)
+    %tr
+      %td.center
+        = link_to word_path(word4) do
+          = image_tag word4.avatar.url(:medium)
+    %tr
+      %td.center
+        = link_to word_path(word5) do
+          = image_tag word5.avatar.url(:medium)
+%br
+= render partial: "/words/tanka_good", locals: {id_list: [word1.id, word2.id, word3.id, word4.id, word5.id]}
+%br
+= link_to '他の短歌を見る', "/tanka/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
+※ 短歌が自動生成されます
 
 %h1 最近のコメント
 
