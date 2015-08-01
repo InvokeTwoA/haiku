@@ -8,7 +8,7 @@
 は古今東西のセリフ画像で
 %strong
   俳句を自動生成
-するサイトです。あなただけの俳句を作りましょう！
+するサイトです。
 %br
 %br
 今までに作成された俳句 :  #{HaikuSet.count} 句
@@ -40,6 +40,12 @@
 %br
 = link_to 'この俳句の詳細をみる', haiku_set_path("#{word1.id}-#{word2.id}-#{word3.id}")
 %br
+= link_to '他の俳句を見る', "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
+※ 俳句が自動生成されます
+
+%h2 自動生成された俳句
+= render partial: "/words/detail", locals: { haiku_set: @haiku_set }
+
 = link_to '他の俳句を見る', "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
 ※ 俳句が自動生成されます
 
@@ -101,7 +107,7 @@
 %h2 最近追加された画像
 
 この画像で究極の俳句が生まれる、かもしれない
-
+%br
 = image_tag @word.avatar.url(:medium), alt: @word.text
 %br
 = @word.text
