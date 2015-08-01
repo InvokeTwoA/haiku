@@ -5,7 +5,7 @@
 
 %h2 画像
 
-= image_tag @word.avatar.url(:medium)
+= image_tag @word.avatar.url(:medium), alt: @word.text
 %br
 = @word.text
 

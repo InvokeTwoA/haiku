@@ -9,19 +9,19 @@
       %tr
         %td.center
           = link_to word_path(word1) do
-            = image_tag word1.avatar.url(:medium)
+            = image_tag word1.avatar.url(:medium), alt: word1.text
           %br
           = word1.text
       %tr
         %td.center
           = link_to word_path(word2) do
-            = image_tag word2.avatar.url(:medium)
+            = image_tag word2.avatar.url(:medium), alt: word2.text
           %br
           = word2.text
       %tr
         %td.center
           = link_to word_path(word3) do
-            = image_tag word3.avatar.url(:medium)
+            = image_tag word3.avatar.url(:medium), alt: word3.text
           %br
           = word3.text
       %tr

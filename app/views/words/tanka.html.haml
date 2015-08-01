@@ -27,25 +27,24 @@
     %tr
       %td.center
         = link_to word_path(word1) do
-          = image_tag word1.avatar.url(:medium)
+          = image_tag word1.avatar.url(:medium), alt: word1.text
     %tr
       %td.center
         = link_to word_path(word2) do
-          = image_tag word2.avatar.url(:medium)
+          = image_tag word2.avatar.url(:medium), alt: word2.text
     %tr
       %td.center
         = link_to word_path(word3) do
-          = image_tag word3.avatar.url(:medium)
+          = image_tag word3.avatar.url(:medium), alt: word3.text
     %tr
       %td.center
         = link_to word_path(word4) do
-          = image_tag word4.avatar.url(:medium)
+          = image_tag word4.avatar.url(:medium), alt: word4.text
     %tr
       %td.center
         = link_to word_path(word5) do
-          = image_tag word5.avatar.url(:medium)
+          = image_tag word5.avatar.url(:medium), alt: word5.text
 = render partial: "/words/tanka_good", locals: {id_list: @tanka_set.id_list}
-
 
 - if request.smart_phone?
   = link_to '画像の追加', new_word_path

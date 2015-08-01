@@ -10,6 +10,9 @@
 今までに作成された俳句数 :  #{HaikuSet.count}
 
 %h1 最近カッパされた俳句
+
+※良いと思った俳句には「カッパだね」をしましょう。カッパだねぇ。
+
 - word1 = Word.find @good.word1
 - word2 = Word.find @good.word2
 - word3 = Word.find @good.word3
@@ -19,19 +22,19 @@
     %tr
       %td.center
         = link_to word_path(word1) do
-          = image_tag word1.avatar.url(:medium)
+          = image_tag word1.avatar.url(:medium), alt: word1.text
     %tr
       %td.center
         = link_to word_path(word2) do
-          = image_tag word2.avatar.url(:medium)
+          = image_tag word2.avatar.url(:medium), alt: word2.text
     %tr
       %td.center
         = link_to word_path(word3) do
-          = image_tag word3.avatar.url(:medium)
+          = image_tag word3.avatar.url(:medium), alt: word2.text
 %br
 = render partial: "/words/good", locals: {id_list: [word1.id, word2.id, word3.id]}
 %br
-= link_to '詳細をみる', haiku_set_path("#{word1.id}-#{word2.id}-#{word3.id}")
+= link_to 'この俳句の詳細をみる', haiku_set_path("#{word1.id}-#{word2.id}-#{word3.id}")
 %br
 = link_to '他の俳句を見る', "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
 ※ 俳句が自動生成されます
@@ -49,23 +52,23 @@
     %tr
       %td.center
         = link_to word_path(word1) do
-          = image_tag word1.avatar.url(:medium)
+          = image_tag word1.avatar.url(:medium), alt: word1.text
     %tr
       %td.center
         = link_to word_path(word2) do
-          = image_tag word2.avatar.url(:medium)
+          = image_tag word2.avatar.url(:medium), alt: word2.text
     %tr
       %td.center
         = link_to word_path(word3) do
-          = image_tag word3.avatar.url(:medium)
+          = image_tag word3.avatar.url(:medium), alt: word3.text
     %tr
       %td.center
         = link_to word_path(word4) do
-          = image_tag word4.avatar.url(:medium)
+          = image_tag word4.avatar.url(:medium), alt: word4.text
     %tr
       %td.center
         = link_to word_path(word5) do
-          = image_tag word5.avatar.url(:medium)
+          = image_tag word5.avatar.url(:medium), alt: word5.text
 %br
 = render partial: "/words/tanka_good", locals: {id_list: [word1.id, word2.id, word3.id, word4.id, word5.id]}
 %br
@@ -73,6 +76,8 @@
 ※ 短歌が自動生成されます
 
 %h1 最近のコメント
+
+最近コメントされた俳句は下記の通り。コメントしてくれるとカッパが喜ぶ。
 
 - if @comments.present?
   %table.table.table-striped.table-hover
@@ -91,4 +96,8 @@
 
 %h1 最近追加された画像
 
-= image_tag @word.avatar.url(:medium)
+この画像で究極の俳句が生まれる、かもしれない
+
+= image_tag @word.avatar.url(:medium), alt: @word.text
+%br
+= @word.text
