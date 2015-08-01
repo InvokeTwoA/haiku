@@ -4,6 +4,5 @@ class TopController < ApplicationController
     @good = Good.recent.first
     @tanka_good = TankaGood.recent.first
     @comments = Comment.recent.limit(5)
-
   end
 end

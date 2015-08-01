@@ -1,8 +1,13 @@
 = content_for :head do
   = stylesheet_link_tag    "words", media: "all", "data-turbolinks-track" => true
   = javascript_include_tag 'words'
-= link_to '他の俳句を見る', "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
-※ 俳句が自動生成されます
+
+セリフ画像で
+%strong
+  俳句が自動生成
+されます。
+%br
+今までに作成された俳句数 :  #{HaikuSet.count}
 
 %h1 最近カッパされた俳句
 - word1 = Word.find @good.word1
