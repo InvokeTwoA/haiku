@@ -2,14 +2,18 @@
   = stylesheet_link_tag    "words", media: "all", "data-turbolinks-track" => true
   = javascript_include_tag 'words'
 
-セリフ画像で
+%h1 かっぱ俳句とは
 %strong
-  俳句が自動生成
-されます。
+  かっぱ俳句
+は古今東西のセリフ画像で
+%strong
+  俳句を自動生成
+するサイトです。あなただけの俳句を作りましょう！
 %br
-今までに作成された俳句数 :  #{HaikuSet.count}
+%br
+今までに作成された俳句 :  #{HaikuSet.count} 句
 
-%h1 最近カッパされた俳句
+%h2 最近カッパされた俳句
 
 ※良いと思った俳句には「カッパだね」をしましょう。カッパだねぇ。
 
@@ -22,15 +26,15 @@
     %tr
       %td.center
         = link_to word_path(word1) do
-          = image_tag word1.avatar.url(:medium), alt: word1.text
+          = image_tag word1.avatar.url(:medium), alt: "かっぱ俳句画像 | #{word1.text}"
     %tr
       %td.center
         = link_to word_path(word2) do
-          = image_tag word2.avatar.url(:medium), alt: word2.text
+          = image_tag word2.avatar.url(:medium), alt: "かっぱ俳句画像 | #{word2.text}"
     %tr
       %td.center
         = link_to word_path(word3) do
-          = image_tag word3.avatar.url(:medium), alt: word2.text
+          = image_tag word3.avatar.url(:medium), alt: "かっぱ俳句画像 | #{word3.text}"
 %br
 = render partial: "/words/good", locals: {id_list: [word1.id, word2.id, word3.id]}
 %br
@@ -39,7 +43,7 @@
 = link_to '他の俳句を見る', "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
 ※ 俳句が自動生成されます
 
-%h1 最近カッパされた短歌
+%h2 最近カッパされた短歌
 
 - word1 = Word.find @tanka_good.word1
 - word2 = Word.find @tanka_good.word2
@@ -75,7 +79,7 @@
 = link_to '他の短歌を見る', "/tanka/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
 ※ 短歌が自動生成されます
 
-%h1 最近のコメント
+%h2 最近のコメント
 
 最近コメントされた俳句は下記の通り。コメントしてくれるとカッパが喜ぶ。
 
@@ -94,10 +98,20 @@
 - else
   コメントなど存在しない
 
-%h1 最近追加された画像
+%h2 最近追加された画像
 
 この画像で究極の俳句が生まれる、かもしれない
 
 = image_tag @word.avatar.url(:medium), alt: @word.text
 %br
 = @word.text
+
+%h1 画像の追加
+
+俳句画像の追加は
+= link_to 'こちら', new_word_path
+から行う事ができます。
+%br
+※反映までは若干の時間がかかる事があります。
+%br
+※カッパが画像を確認し、承認されれば反映されます。

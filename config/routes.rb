@@ -31,4 +31,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources 'statics' do
+    collection do
+      get :antena, as: :antena
+    end
+  end
 end
