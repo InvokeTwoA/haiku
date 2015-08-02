@@ -45,7 +45,7 @@
 
 %h2 自動生成された俳句
 = render partial: "/words/detail", locals: { haiku_set: @haiku_set }
-
+%br
 = link_to '他の俳句を見る', "/haiku/#{SecureRandom.urlsafe_base64(6)}", class: 'btn btn-info'
 ※ 俳句が自動生成されます
 
