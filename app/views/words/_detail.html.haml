@@ -30,9 +30,10 @@
       %td
         コメント
         %span.badge #{haiku_set.comments.count}
-※ この俳句は #{ @haiku_set.id }番目に作られた俳句です。
+※ この俳句は #{ haiku_set.id }番目に作られた俳句です。
 %br
-※ この俳句が作成された日： #{ @haiku_set.created_at.strftime("%Y年%m月%d日") }
+- if haiku_set.created_at.present?
+  ※ この俳句が作成された日： #{ haiku_set.created_at.strftime("%Y年%m月%d日") }
 
 .kappa_dane
 = render partial: "/words/good", locals: {id_list: [word1.id, word2.id, word3.id]}
