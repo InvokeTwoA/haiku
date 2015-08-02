@@ -1,8 +1,8 @@
 class WordsController < ApplicationController
   def index
     #@words = Word.all
-    word5_list = Word.text5.pluck(:id)
-    word7_list = Word.text7.pluck(:id)
+    word5_list = Word.text5.permitted.pluck(:id)
+    word7_list = Word.text7.permitted.pluck(:id)
 
     @id_lists = []
     while true do
@@ -24,8 +24,8 @@ class WordsController < ApplicationController
   end
 
   def rnd
-    word5_list = Word.text5.pluck(:id)
-    word7_list = Word.text7.pluck(:id)
+    word5_list = Word.text5.permitted.pluck(:id)
+    word7_list = Word.text7.permitted.pluck(:id)
     @id_lists = []
     while true do
       break if word5_list.count <= 1 || word7_list.count <= 0
@@ -93,8 +93,8 @@ class WordsController < ApplicationController
 
       @res = @haiku_set.id_list
     else
-      word5_list = Word.text5.pluck(:id)
-      word7_list = Word.text7.pluck(:id)
+      word5_list = Word.text5.permitted.pluck(:id)
+      word7_list = Word.text7.permitted.pluck(:id)
       tmp_word5 = word5_list.sample(2)
       tmp_word7 = word7_list.sample(1)
 
@@ -128,8 +128,8 @@ class WordsController < ApplicationController
 
       @res = @tanka_set.id_list
     else
-      word5_list = Word.text5.pluck(:id)
-      word7_list = Word.text7.pluck(:id)
+      word5_list = Word.text5.permitted.pluck(:id)
+      word7_list = Word.text7.permitted.pluck(:id)
       tmp_word5 = word5_list.sample(2)
       tmp_word7 = word7_list.sample(3)
 

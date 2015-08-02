@@ -23,6 +23,13 @@ class Admin::WordsController < ApplicationController
     redirect_to :back
   end
 
+  def permit
+    word = Word.find params[:id]
+    word.permit_flag = true
+    word.save!
+    redirect_to :back
+  end
+
   protected
   def authenticate
     authenticate_or_request_with_http_basic('Administration') do |username, password|

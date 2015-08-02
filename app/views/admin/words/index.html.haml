@@ -9,11 +9,17 @@
         %td
           = word.id
         %td
+          - if word.permit_flag
+            許可済み
+          - else
+            = link_to '許可する', permit_admin_word_path(word), method: 'put', class: 'btn btn-success'
+        %td
           = image_tag word.avatar.url(:medium)
           %br
           = word.text
         %td
           = link_to '編集', edit_admin_word_path(word), class: 'btn btn-info'
-          = link_to '削除', admin_word_path(word), method: 'delete', data: {confirm: '削除するブヒ？'}, class: "btn btn-danger"
+          - unless word.permit_flag
+            = link_to '削除', admin_word_path(word), method: 'delete', data: {confirm: '削除するブヒ？'}, class: "btn btn-danger"
 
 

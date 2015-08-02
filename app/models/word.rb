@@ -21,6 +21,7 @@ class Word < ActiveRecord::Base
 
   scope :text5, -> { where(number: 5) }
   scope :text7, -> { where(number: 7) }
+  scope :permitted, -> { where(permit_flag: true) }
 
   scope :recent, -> { order("id DESC") } 
 end

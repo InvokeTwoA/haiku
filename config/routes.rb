@@ -23,7 +23,11 @@ Rails.application.routes.draw do
   resources :comments
 
   namespace 'admin' do
-    resources :words
+    resources :words do
+      member do
+        put :permit
+      end
+    end
     resources :goods do
       collection do
         get :popular
