@@ -8,7 +8,7 @@ class Word < ActiveRecord::Base
       s3_host_name: "s3-ap-northeast-1.amazonaws.com",
       bucket: Settings.bucket
     },
-    s3_protocol: :https,
+#    s3_protocol: :https,
     url: 's3-ap-northeast-1.amazonaws.com',
     s3_endpoint: "s3-ap-northeast-1.amazonaws.com",
     path: '/:class/:attachment/:id_partition/:style/:filename',
