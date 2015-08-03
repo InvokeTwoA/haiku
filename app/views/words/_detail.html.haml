@@ -21,6 +21,11 @@
       %td.center
         = link_to word_path(word3) do
           = image_tag word3.avatar.url(:medium), alt: word3.text
+.social
+  = link_to 'ツィート', 'https://twitter.com/share', class: 'twitter-share-button', data: { url: haiku_set_url(haiku_set.token), text: "#{ word1.text }　#{ word2.text }　#{ word3.text }  #かっぱ俳句", lang: "ja" }
+  :javascript
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
 .kappa_data
   %table.table.table-striped.table-hover
     %tr
@@ -37,4 +42,3 @@
 
 .kappa_dane
 = render partial: "/words/good", locals: {id_list: [word1.id, word2.id, word3.id]}
-
