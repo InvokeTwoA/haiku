@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   resources 'statics' do
     collection do
       get :antena, as: :antena
+      get :nomi, as: :nomi
     end
   end
 end
