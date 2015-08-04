@@ -12,20 +12,20 @@
 /%link{media: 'handheld', rel: 'alternate', href: canonical_url}/
 - set_meta_tags description: 'かっぱ俳句はセリフ画像による俳句サイトです。沢山ある画像から俳句が自動生成されます。良いと思った俳句を評価すれば、その俳句がより見られやすくなります。あなただけの俳句を見つけましょう！'
 - set_meta_tags keywords: ['かっぱ俳句','カッパ俳句', 'カッパ', 'かっぱ', '俳句メーカー', '俳句', '画像俳句', '吹き出し画像', 'ごしちご', '五七五', '俳句画像', 'セリフ画像']
-/= display_meta_tags keywords: ['追加1', '追加2']
-= display_meta_tags open_graph: { title: 'カッパの俳句' }
+/= display_meta_tags open_graph: { title: 'カッパの俳句' }
 /- set_meta_tags canonical: canonical_url
 
 :ruby
   opg = {
     title: 'カッパの俳句',
     type: 'website',
-    url: '',
-    image: '',
-    site_name: 'カッパの俳句',
+    url: root_url,
+    image: '/images/nomi.png',
+    site_name: 'かっぱ俳句',
     description: '吹き出し画像による俳句',
     locale: 'ja_JP'
   }
-- set_meta_tags :open_graph => opg
+- set_meta_tags open_graph: opg
+= display_meta_tags
 /%meta{content: '#{Settings.facebook.app_id}', property: 'fb:app_id'}/
 
