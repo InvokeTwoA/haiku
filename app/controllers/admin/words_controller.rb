@@ -3,7 +3,7 @@ class Admin::WordsController < ApplicationController
   layout 'admin'
 
   def index
-    @words = Word.all
+    @words = Word.recent
   end
 
   def edit

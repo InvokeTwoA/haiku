@@ -44,12 +44,18 @@
       = yield
     .footer_add
       = render "/commons/google_analytics"
+      / google adsence
+      %script{:async => "", :src => "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"}
+      / haiku
+      %ins.adsbygoogle{"data-ad-client" => "ca-pub-3329113358393775", "data-ad-format" => "auto", "data-ad-slot" => "9425679840", :style => "display:block"}
+      :javascript
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      / nend
       :javascript
         var nend_params = {"media":27178,"site":152443,"spot":411511,"type":1,"oriented":1};
       %script{ type: "text/javascript", src: "http://js1.nend.net/js/nendAdLoader.js" }
-      <!-- admax -->
+      / admax
       .ad{style: "text-align: right"}
         %script{ src: "http://adm.shinobi.jp/s/3db100ab00a0ce7765922b2320f841fd" }
-      <!-- admax -->
     .copyright{ style: 'text-align: center' }
       Copyright &copy; 2013 かっぱ All Rights Reserved.
