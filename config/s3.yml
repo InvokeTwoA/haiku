@@ -1,7 +1,7 @@
 development:
   bucket: kappa.haiku.dev
-  access_key_id: AKIAJ4J46ZCPRQCQZXJQ
-  secret_access_key: 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
+  access_key_id: <%= ENV['access_key'] %>
+  secret_access_key: <%= ENV['secret_key'] %>
 
 test:
   bucket: myapptest
@@ -10,5 +10,5 @@ test:
 
 production:
   bucket: kappa.haiku
-  access_key_id: AKIAJ4J46ZCPRQCQZXJQ
-  secret_access_key: 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
+  access_key_id: <%= ENV['access_key'] %>
+  secret_access_key: <%= ENV['secret_key'] %>
