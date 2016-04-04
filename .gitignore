@@ -16,7 +16,7 @@
 log/
 !/log/.keep
 /tmp
-#config/
+config/
 test/
 #vendor/
 public/system/*
